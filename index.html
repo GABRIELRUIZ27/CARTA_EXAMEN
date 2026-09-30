@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17152d">
+  <title>Hoy confía en ti, preciosa ✨</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600;1,700&display=swap');
+
+    :root {
+      --night:#17152d; --night-soft:#26213f; --paper:rgba(255,255,255,.91);
+      --lilac:#b9a7ff; --purple:#7765c7; --pink:#f49ab5; --peach:#ffd2bd;
+      --ink:#302b43; --muted:#706a7e; --wine:#6f3853;
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      margin:0; color:var(--ink); font-family:"DM Sans",Arial,sans-serif;
+      background:
+        radial-gradient(circle at 15% 8%,rgba(154,126,255,.28),transparent 28rem),
+        radial-gradient(circle at 88% 30%,rgba(244,154,181,.18),transparent 25rem),
+        linear-gradient(180deg,var(--night) 0 26%,#f8f2fa 62%,#fff8f5 100%); overflow-x:hidden;
+    }
+    .progress { position:fixed; inset:0 auto auto 0; z-index:20; height:4px; width:0;
+      background:linear-gradient(90deg,var(--lilac),var(--pink),var(--peach)); }
+    .petals { position:fixed; inset:0; overflow:hidden; pointer-events:none; z-index:10; }
+    .petal { position:absolute; top:-9vh; width:6px; height:6px; opacity:.75;
+      border-radius:50%; background:#fff; box-shadow:0 0 12px 3px rgba(220,205,255,.7);
+      animation:fall linear infinite; }
+    @keyframes fall { to { transform:translate3d(var(--drift),112vh,0) scale(.35); opacity:.08; } }
+    @keyframes arrive { from { opacity:0; transform:translateY(28px) scale(.98); } }
+    @keyframes breathe { 50% { transform:scale(1.06); opacity:.78; } }
+    @keyframes heartbeat { 0%,34%,100%{transform:scale(1)} 12%{transform:scale(1.12)} 23%{transform:scale(1.03)} }
+
+    .hero { min-height:100svh; display:grid; place-items:center; padding:54px 20px 96px; position:relative; color:white; }
+    .glow { position:absolute; width:min(78vw,720px); aspect-ratio:1; border-radius:50%; z-index:-1;
+      background:radial-gradient(circle,rgba(164,136,255,.28),rgba(244,154,181,.09) 52%,transparent 71%);
+      animation:breathe 5s ease-in-out infinite; }
+    .hero-card { width:min(900px,100%); padding:clamp(42px,7vw,82px); text-align:left;
+      border:1px solid rgba(255,255,255,.17); border-radius:8px 54px 8px 54px; background:rgba(33,28,61,.72);
+      backdrop-filter:blur(20px); box-shadow:0 35px 100px rgba(0,0,0,.32); animation:arrive 1s both; position:relative; overflow:hidden; }
+    .hero-card::after { content:"✦"; position:absolute; right:7%; top:7%; color:var(--pink); font-size:clamp(3rem,8vw,6rem); opacity:.65; }
+    .eyebrow,.mini { color:var(--purple); font-size:.78rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; }
+    .eyebrow { display:inline-flex; gap:8px; padding:9px 15px; border:1px solid rgba(255,255,255,.16); border-radius:999px; background:rgba(255,255,255,.08); color:#e5dcff; }
+    h1,h2,blockquote { font-family:"Playfair Display",Georgia,serif; }
+    h1 { margin:30px 0 22px; max-width:760px; color:#fff; font-size:clamp(3rem,9vw,6.6rem);
+      line-height:.96; letter-spacing:-.055em; }
+    h1 em,h2 em,blockquote em { color:var(--pink); }
+    .intro { max-width:670px; margin:0 0 32px; color:#d7d1e5; font-size:clamp(1.02rem,2.2vw,1.24rem); line-height:1.75; }
+    .button { display:inline-flex; align-items:center; gap:9px; border:0; border-radius:999px; padding:14px 22px;
+      color:white; background:linear-gradient(135deg,var(--purple),#9e6eae); font:700 1rem "DM Sans",Arial,sans-serif; text-decoration:none; cursor:pointer;
+      box-shadow:0 12px 28px rgba(119,101,199,.28); transition:.25s; }
+    .button:hover { transform:translateY(-3px); filter:brightness(1.08); }
+    .today { margin-top:24px; color:#aaa3bb; font-size:.88rem; }
+
+    main { width:min(1060px,calc(100% - 34px)); margin:auto; }
+    section { padding:clamp(70px,10vw,120px) 0; }
+    .title { max-width:720px; margin:0 auto 44px; text-align:center; }
+    h2 { margin:10px 0 14px; color:#44365d; font-size:clamp(2.2rem,5vw,4rem); line-height:1.08; }
+    .title p { color:var(--muted); line-height:1.75; }
+    .cards { display:grid; grid-template-columns:1.15fr .85fr; grid-template-rows:auto auto; gap:20px; }
+    .card { min-height:230px; padding:32px; border:1px solid rgba(119,101,199,.12); border-radius:12px 34px 12px 34px;
+      background:var(--paper); box-shadow:0 18px 45px rgba(65,50,86,.1); transition:.3s; }
+    .card:first-child { grid-row:span 2; display:flex; flex-direction:column; justify-content:center; background:linear-gradient(145deg,#f0ebff,#fff); }
+    .card:hover { transform:translateY(-7px) rotate(-.3deg); box-shadow:0 25px 55px rgba(65,50,86,.16); }
+    .icon { display:grid; place-items:center; width:58px; height:58px; border-radius:50%; background:#e8e0ff; font-size:1.7rem; }
+    .card:nth-child(2) .icon { background:#ffe3eb; }
+    .card:nth-child(3) .icon { background:#ffe9df; }
+    .card h3 { margin:21px 0 9px; color:var(--wine); font-size:1.25rem; }
+    .card p { margin:0; color:#606961; line-height:1.72; }
+
+    .calm { display:grid; grid-template-columns:.9fr 1.1fr; gap:clamp(30px,7vw,76px); align-items:center; }
+    .art { min-height:370px; display:grid; place-items:center; position:relative; }
+    .circle { display:grid; place-items:center; width:min(330px,82vw); aspect-ratio:1; border-radius:38% 62% 57% 43% / 45% 42% 58% 55%;
+      background:linear-gradient(145deg,#eee8ff,#ffdfe9); box-shadow:inset 0 0 0 20px rgba(255,255,255,.48),0 30px 70px rgba(89,64,119,.16); transform:rotate(-4deg); }
+    .heart { font-size:7rem; animation:heartbeat 1.65s infinite; filter:drop-shadow(0 14px 15px rgba(193,61,70,.18)); }
+    .calm-copy p { color:#5e685f; font-size:1.07rem; line-height:1.82; }
+    .steps { display:flex; flex-wrap:wrap; gap:9px; margin-top:23px; }
+    .steps span { padding:9px 13px; border:1px solid #e1e6dd; border-radius:99px; background:white; font-size:.87rem; font-weight:600; }
+
+    .note { padding:clamp(42px,7vw,72px) 24px; text-align:center; color:white; border-radius:12px 54px 12px 54px;
+      background:linear-gradient(145deg,#28213f,#563650); box-shadow:0 30px 70px rgba(48,34,66,.24); overflow:hidden; position:relative; }
+    .note::before { content:""; position:absolute; width:310px; height:310px; right:-100px; top:-180px; border-radius:50%; background:rgba(255,210,80,.12); }
+    .dog { display:inline-block; font-size:5rem; animation:breathe 2.1s ease-in-out infinite; }
+    .note h2 { margin:10px auto 14px; color:#ffd6e4; }
+    .note p { max-width:720px; margin:0 auto; color:#f7eae2; font-size:1.08rem; line-height:1.8; }
+    .note .paw { margin-top:22px; letter-spacing:9px; opacity:.72; }
+
+    .letter { max-width:900px; margin:auto; text-align:center; }
+    blockquote { margin:14px 0 0; color:#44365d; font-size:clamp(1.85rem,4.4vw,3.55rem); line-height:1.3; }
+    .signature { margin:25px auto 0; max-width:650px; color:#717a72; line-height:1.75; }
+    .reveal-button { margin-top:34px; background:linear-gradient(135deg,#a06bb0,var(--pink)); box-shadow:0 14px 30px rgba(160,107,176,.25); }
+    .secret { max-height:0; opacity:0; overflow:hidden; transform:translateY(10px); transition:.7s ease; }
+    .secret.show { max-height:340px; opacity:1; transform:none; }
+    .secret p { max-width:650px; margin:28px auto 0; padding:28px; border:1px solid #e5dafa; border-radius:8px 28px 8px 28px; background:#f4efff;
+      color:#544168; font-size:1.08rem; line-height:1.72; box-shadow:0 15px 40px rgba(74,52,99,.1); }
+    footer { padding:42px 20px; text-align:center; color:#747d75; font-size:.9rem; }
+    .reveal { opacity:0; transform:translateY(28px); transition:.8s ease; }
+    .reveal.visible { opacity:1; transform:none; }
+    .spark { position:fixed; z-index:30; pointer-events:none; font-size:21px; animation:pop 1.2s ease-out forwards; }
+    @keyframes pop { to { transform:translate(var(--x),var(--y)) rotate(40deg) scale(.2); opacity:0; } }
+    @media (max-width:760px) { .hero-card{text-align:center}.intro{margin-left:auto;margin-right:auto}.cards,.calm { grid-template-columns:1fr; } .card:first-child{grid-row:auto}.card { min-height:0; } .calm-copy{text-align:center}.steps{justify-content:center}.art{min-height:330px} }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important; animation-iteration-count:1!important; scroll-behavior:auto!important; } }
+  </style>
+</head>
+<body>
+  <div class="progress" aria-hidden="true"></div>
+  <div class="petals" aria-hidden="true"></div>
+
+  <header class="hero">
+    <div class="glow" aria-hidden="true"></div>
+    <div class="hero-card">
+      <span class="eyebrow">✦ Un mensaje para antes de tu examen</span>
+      <h1>Hoy confía en todo lo que <em>sí sabes</em></h1>
+      <p class="intro">Tal vez Comunicación Digital se sintió complicada por momentos, pero no llegaste hasta aquí por casualidad. Estudiaste, preguntaste y seguiste intentando. Hoy solo toca respirar y dejar que todo ese esfuerzo hable por ti.</p>
+      <a class="button" href="#recordatorio">Leer mi recordatorio <span aria-hidden="true">↓</span></a>
+      <p class="today">30 de septiembre de 2026 · Un poquito de calma para un día importante</p>
+    </div>
+  </header>
+
+  <main>
+    <section id="recordatorio">
+      <div class="title reveal">
+        <span class="mini">Antes de comenzar</span>
+        <h2>Tres cosas que quiero que <em>recuerdes</em></h2>
+        <p>No necesitas sentirte completamente segura para hacerlo bien. Solo necesitas darte la oportunidad de demostrar lo que aprendiste.</p>
+      </div>
+      <div class="cards">
+        <article class="card reveal">
+          <div class="icon">🧠</div>
+          <h3>Sabes más de lo que sientes</h3>
+          <p>Los nervios hacen ruido, pero no borran lo que estudiaste. Lee despacio, busca la idea central y confía en la primera conexión que haga tu mente.</p>
+        </article>
+        <article class="card reveal">
+          <div class="icon">🌿</div>
+          <h3>Una pregunta a la vez</h3>
+          <p>No tienes que resolver todo el examen de golpe. Empieza por lo claro, marca lo difícil y vuelve después con la mente más tranquila.</p>
+        </article>
+        <article class="card reveal">
+          <div class="icon">✨</div>
+          <h3>Tu esfuerzo ya cuenta</h3>
+          <p>Una calificación nunca podrá medir toda tu inteligencia ni todo lo que vales. Pero sé que hoy tu dedicación va a notarse.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="calm">
+      <div class="art reveal" aria-label="Corazón que late con calma">
+        <div class="circle"><span class="heart">❤️</span></div>
+      </div>
+      <div class="calm-copy reveal">
+        <span class="mini">Tu pequeño protocolo</span>
+        <h2>Si los nervios llegan, vuelve a <em>ti</em></h2>
+        <p>Haz una pausa: inhala cuatro segundos, sostén cuatro y exhala lentamente. Después lee otra vez. Como en una emergencia, primero se observa, luego se piensa y entonces se actúa.</p>
+        <p>Tienes la serenidad y la capacidad para encontrar el camino, incluso cuando una pregunta parece difícil al principio.</p>
+        <div class="steps"><span>respira</span><span>lee con calma</span><span>descarta opciones</span><span>confía</span><span>continúa</span></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="note reveal">
+        <div class="dog" aria-hidden="true">🐕</div>
+        <h2>Mía también votó por ti</h2>
+        <p>Dice que eres la persona más inteligente de la casa y que, cuando salgas del examen, te mereces un abrazo enorme. Ella quizá no sabe de comunicación digital, pero sí sabe reconocer a alguien que no se rinde.</p>
+        <div class="paw" aria-hidden="true">🐾 🐾 🐾</div>
+      </div>
+    </section>
+
+    <section class="letter reveal">
+      <span class="mini">Mi mensaje más importante</span>
+      <blockquote>Entra con calma, responde con confianza y sal sabiendo que diste lo mejor de <em>ti</em>.</blockquote>
+      <p class="signature">Estoy orgulloso de ti desde antes de conocer el resultado. Hoy no tienes que ser perfecta; solo tienes que ser esa chica inteligente, fuerte y valiente que yo ya conozco.</p>
+      <button class="button reveal-button" type="button" aria-expanded="false">Un último empujoncito 💛</button>
+      <div class="secret" aria-live="polite">
+        <p><strong>Vas a hacerlo muy bien, preciosa.</strong> Respira, confía en lo que estudiaste y recuerda que alguien está pensando en ti y deseándote toda la suerte del mundo. Yo creo muchísimo en ti. ✨</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>Hecho con cariño para acompañarte hoy, incluso desde lejos ✨</footer>
+
+  <script>
+    const petalBox=document.querySelector('.petals');
+    for(let i=0;i<18;i++){
+      const petal=document.createElement('i'); petal.className='petal';
+      petal.style.left=Math.random()*100+'vw'; petal.style.animationDuration=7+Math.random()*8+'s';
+      petal.style.animationDelay=-Math.random()*14+'s'; petal.style.setProperty('--drift',(-80+Math.random()*160)+'px');
+      petalBox.appendChild(petal);
+    }
+    const observer=new IntersectionObserver(entries=>entries.forEach(entry=>entry.isIntersecting&&entry.target.classList.add('visible')),{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+    addEventListener('scroll',()=>{
+      const height=document.documentElement.scrollHeight-innerHeight;
+      document.querySelector('.progress').style.width=(height?scrollY/height*100:0)+'%';
+    },{passive:true});
+    const button=document.querySelector('.reveal-button');
+    button.addEventListener('click',()=>{
+      const secret=document.querySelector('.secret'); const showing=secret.classList.toggle('show');
+      button.setAttribute('aria-expanded',showing); button.textContent=showing?'Lo digo de corazón 💛':'Un último empujoncito 💛';
+      if(showing){
+        for(let i=0;i<24;i++){
+          const spark=document.createElement('span'); spark.className='spark'; spark.textContent=Math.random()>.45?'✨':'💗';
+          const rect=button.getBoundingClientRect(); spark.style.left=rect.left+rect.width/2+'px'; spark.style.top=rect.top+'px';
+          spark.style.setProperty('--x',(-190+Math.random()*380)+'px'); spark.style.setProperty('--y',(-80-Math.random()*210)+'px');
+          document.body.appendChild(spark); setTimeout(()=>spark.remove(),1250);
+        }
+      }
+    });
+  </script>
+</body>
+</html>
+
+
